@@ -1,0 +1,21 @@
+<h1>All Products</h1>
+
+<form method="GET" action="{% url 'product_list' %}">
+  <input type="text" name="q" placeholder="Search products...">
+  <button type="submit">Search</button>
+</form>
+
+<ul>
+  {% for product in products %}
+    <li>
+      <a href="{% url 'product_detail' product.pk %}">
+        <strong>{{ product.name }}</strong>
+      </a><br>
+      ₹{{ product.price }}<br>
+      <img src="{{ product.image.url }}" width="100"><br>
+      <p>{{ product.description|truncatechars:50 }}</p>
+    </li>
+  {% empty %}
+    <li>No products available.</li>
+  {% endfor %}
+</ul>

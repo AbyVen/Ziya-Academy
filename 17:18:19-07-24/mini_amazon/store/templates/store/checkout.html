@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+</head>
+<body>
+    <h1>Checkout</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Address:</label><br>
+        <textarea name="address" required></textarea><br><br>
+
+        <label>Payment Method:</label><br>
+        <select name="payment_method" required>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+            <option value="Card">Card</option>
+            <option value="UPI">UPI</option>
+        </select><br><br>
+
+        <button type="submit">Place Order</button>
+    </form>
+
+    <a href="{% url 'view_cart' %}">← Back to Cart</a>
+</body>
+</html>

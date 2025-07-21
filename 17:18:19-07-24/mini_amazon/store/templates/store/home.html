@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Amazon</title>
+</head>
+<body>
+    <h1>Welcome to Mini Amazon</h1>
+    <p><a href="{% url 'view_cart' %}">🛒 View Cart</a></p>
+
+    <form method="GET" action="{% url 'home' %}">
+        <input type="text" name="q" placeholder="Search products..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for product in products %}
+            <li>
+                <a href="{% url 'product_detail' product.pk %}">
+                <a href="{% url 'order_history' %}">My Orders</a>
+                <strong>{{ product.name }}</strong>
+                </a><br>
+                ₹{{ product.price }}<br>
+                {{ product.description }}
+                <form method="post" action="{% url 'add_to_cart' product.id %}">
+                     {% csrf_token %}
+                     <button type="submit">Add to Cart</button>
+                </form>
+            </li>
+         {% empty %}
+            <li>No products available.</li>
+         {% endfor %}
+    </ul>
+    <h2>Categories</h2>
+    <ul>
+         {% for category in categories %}
+            <li>
+                <a href="{% url 'category_filter' category.id %}">
+                 {{ category.name }}
+                </a>
+            </li>
+         {% endfor %}
+         {% if selected_category %}
+             <h3>Showing products in "{{ selected_category.name }}"</h3>
+         {% endif %}
+
+     </ul>
+
+</body>
+</html>

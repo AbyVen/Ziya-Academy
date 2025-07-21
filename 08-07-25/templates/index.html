@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Book Review App</title></head>
+<body>
+    <h1>All Books</h1>
+    <a href="{{ url_for('add_book') }}">Add New Book</a>
+    <ul>
+        {% for book in books %}
+            <li>
+                <h3>{{ book.title }} by {{ book.author }}</h3>
+                <p>{{ book.description }}</p>
+                <a href="{{ url_for('add_review', book_id=book.id) }}">Add Review</a> |
+                <a href="{{ url_for('delete_book', book_id=book.id) }}">Delete Book</a>
+                <h4>Reviews:</h4>
+                <ul>
+                    {% for review in reviews.get(book.id, []) %}
+                        <li>{{ review }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

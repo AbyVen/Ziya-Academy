@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Holiday Calendar</title>
+    <style>
+        table { border-collapse: collapse; margin: 20px auto; }
+        th, td { padding: 10px; text-align: center; width: 50px; height: 50px; }
+        td.holiday { background-color: #f8c8c8; cursor: pointer; }
+        td.day { cursor: pointer; }
+        th { background-color: #eee; }
+        .nav-buttons { text-align: center; margin-top: 10px; }
+        .form-container { text-align: center; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">{{ month_name }} {{ year }}</h2>
+
+    <div class="nav-buttons">
+        <a href="/?year={{ year }}&month={{ month - 1 }}">Previous Month</a> |
+        <a href="/?year={{ year }}&month={{ month + 1 }}">Next Month</a>
+    </div>
+
+    <table border="1">
+        <tr>
+            {% for day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
+                <th>{{ day }}</th>
+            {% endfor %}
+        </tr>
+        {% for week in month_days %}
+            <tr>
+                {% for day in week %}
+                    {% if day == 0 %}
+                        <td></td>
+                    {% else %}
+                        {% set date_str = "%04d-%02d-%02d" | format(year, month, day) %}
+                        {% if date_str in holidays %}
+                            <td class="holiday" onclick="checkHoliday('{{ date_str }}')">{{ day }}</td>
+                        {% else %}
+                            <td class="day" onclick="checkHoliday('{{ date_str }}')">{{ day }}</td>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="form-container">
+        <h3>Add a Custom Holiday</h3>
+        <form action="/add_holiday" method="post">
+            <input type="date" name="date" required>
+            <input type="text" name="description" placeholder="Holiday Description" required>
+            <button type="submit">Add Holiday</button>
+        </form>
+    </div>
+
+    <script>
+        function checkHoliday(date) {
+            fetch('/check_holiday', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ date: date })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.holiday) {
+                    alert(date + "\n" + data.description);
+                } else {
+                    alert(date + " is not a public holiday.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
