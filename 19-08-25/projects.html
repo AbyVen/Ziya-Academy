@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="projects-page">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects • My Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="projects-page">
+  <header class="site-header">
+    <nav class="nav container">
+      <a class="logo" href="index.html">AbyVen</a>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="active" href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="section container">
+    <header class="section-head">
+      <h1>Projects</h1>
+      <p class="muted">A selection of recent work. Hover/tap cards to explore.</p>
+    </header>
+
+    <div class="projects-grid">
+      <!-- Card 1 -->
+      <article class="project-card">
+        <div class="thumb"><img src="images/proj1.jpg" alt="Project 1" /></div>
+        <div class="project-body">
+          <h3>Landing Page Revamp</h3>
+          <p>Responsive marketing page using Grid, with A/B tested hero.</p>
+          <a class="btn ghost small" href="#" aria-label="Open project 1">View</a>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="project-card">
+        <div class="thumb"><img src="images/proj2.jpg" alt="Project 2" /></div>
+        <div class="project-body">
+          <h3>Portfolio Theme</h3>
+          <p>Lightweight theme with CSS variables, dark mode, and motion.</p>
+          <a class="btn ghost small" href="#" aria-label="Open project 2">View</a>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="project-card">
+        <div class="thumb"><img src="images/proj3.jpg" alt="Project 3" /></div>
+        <div class="project-body">
+          <h3>Dashboard UI</h3>
+          <p>Flexbox + Grid layout with cards, filters, and charts placeholders.</p>
+          <a class="btn ghost small" href="#" aria-label="Open project 3">View</a>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="project-card">
+        <div class="thumb"><img src="images/proj4.jpg" alt="Project 4" /></div>
+        <div class="project-body">
+          <h3>Blog Platform</h3>
+          <p>Accessible article templates with typographic scale and code blocks.</p>
+          <a class="btn ghost small" href="#" aria-label="Open project 4">View</a>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="project-card">
+        <div class="thumb"><img src="images/proj5.jpg" alt="Project 5" /></div>
+        <div class="project-body">
+          <h3>eCommerce UI Kit</h3>
+          <p>Reusable product cards, ratings, and checkout forms.</p>
+          <a class="btn ghost small" href="#" aria-label="Open project 5">View</a>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="project-card">
+        <div class="thumb"><img src="images/proj6.jpg" alt="Project 6" /></div>
+        <div class="project-body">
+          <h3>Micro-SaaS Site</h3>
+          <p>Pricing tables, FAQ accordions, and contact capture.</p>
+          <a class="btn ghost small" href="#" aria-label="Open project 6">View</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Abhilash Venugopal. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year')?.append(new Date().getFullYear());
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle?.addEventListener('click', () => links.classList.toggle('open'));
+  </script>
+</body>
+</html>

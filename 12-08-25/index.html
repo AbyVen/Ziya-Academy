@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Login Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="login-container">
+        <section class="login-card">
+            <header class="login-header">
+                <div class="logo">
+                    <div class="logo-square"></div>
+                </div>
+                <h2>Login</h2>
+            </header>
+
+            <form class="login-form" id="loginForm" novalidate>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                    </div>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-wrapper password-wrapper">
+                        <input type="password" id="password" name="password" required autocomplete="current-password">
+                    </div>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">Log In</span>
+                    <div class="btn-loader">
+                        <span class="loader-bar"></span>
+                        <span class="loader-bar"></span>
+                        <span class="loader-bar"></span>
+                    </div>
+                </button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Mini Projects</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    nav { background: #333; color: white; display: flex; justify-content: center; }
+    nav button {
+      background: none; border: none; color: white;
+      padding: 15px 20px; cursor: pointer; font-size: 16px;
+    }
+    nav button:hover { background: #444; }
+    .project { display: none; padding: 20px; min-height: 90vh; }
+    .active { display: block; }
+
+    /* Calculator */
+    .calc input, .calc select, .calc button { margin: 5px; padding: 8px; }
+
+    /* Background Changer */
+    .bg-btn { padding: 15px 25px; font-size: 18px; cursor: pointer; border-radius: 8px; }
+
+    /* Clock */
+    #clock { color: lime; font-size: 60px; font-family: monospace; text-align: center; }
+
+    /* Form */
+    form { max-width: 300px; margin: auto; border: 1px solid #333; padding: 20px; border-radius: 10px; }
+    form input, form button { width: 100%; margin: 10px 0; padding: 8px; }
+    .error { color: red; text-align: center; }
+
+    /* To-Do */
+    .todo { max-width: 300px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .todo input, .todo button { width: 100%; margin: 5px 0; padding: 10px; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 8px; background: #eee; margin: 5px 0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <button onclick="showProject('calculator')">Calculator</button>
+    <button onclick="showProject('background')">Color Changer</button>
+    <button onclick="showProject('clock')">Clock</button>
+    <button onclick="showProject('form')">Form Validation</button>
+    <button onclick="showProject('todo')">To-Do List</button>
+  </nav>
+
+  <!-- Projects -->
+
+  <!-- Calculator -->
+  <div id="calculator" class="project active">
+    <h2>Calculator</h2>
+    <div class="calc">
+      <input type="number" id="num1" placeholder="First number">
+      <input type="number" id="num2" placeholder="Second number"><br>
+      <select id="operation">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
+      <button onclick="calculate()">Calculate</button>
+      <h3 id="result"></h3>
+    </div>
+  </div>
+
+  <!-- Background Color Changer -->
+  <div id="background" class="project">
+    <h2>Background Color Changer</h2>
+    <button class="bg-btn" onclick="changeColor()">Change Background</button>
+  </div>
+
+  <!-- Clock -->
+  <div id="clock" class="project">
+    <h2 style="text-align:center; color:white;">Digital Clock</h2>
+    <div id="clockTime"></div>
+  </div>
+
+  <!-- Form Validation -->
+  <div id="form" class="project">
+    <h2 style="text-align:center;">Form Validation</h2>
+    <form onsubmit="return validateForm()">
+      <input type="text" id="name" placeholder="Name">
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Password">
+      <button type="submit">Submit</button>
+      <p id="error" class="error"></p>
+    </form>
+  </div>
+
+  <!-- To-Do List -->
+  <div id="todo" class="project">
+    <div class="todo">
+      <h2>To-Do List</h2>
+      <input type="text" id="task" placeholder="Enter a task">
+      <button onclick="addTask()">Add Task</button>
+      <ul id="taskList"></ul>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Navigation
+    function showProject(id) {
+      document.querySelectorAll('.project').forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      if(id === "clock") document.body.style.background = "black";
+      else document.body.style.background = "";
+    }
+
+    // Calculator
+    function calculate() {
+      let n1 = parseFloat(document.getElementById("num1").value);
+      let n2 = parseFloat(document.getElementById("num2").value);
+      let op = document.getElementById("operation").value;
+      let res;
+      switch (op) {
+        case "+": res = n1 + n2; break;
+        case "-": res = n1 - n2; break;
+        case "*": res = n1 * n2; break;
+        case "/": res = n2 !== 0 ? n1 / n2 : "Cannot divide by zero"; break;
+      }
+      document.getElementById("result").innerText = "Result: " + res;
+    }
+
+    // Background Color Changer
+    function changeColor() {
+      const colors = ["#FF5733", "#33FF57", "#3357FF", "#F39C12", "#8E44AD", "#1ABC9C", "#E74C3C"];
+      document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    // Clock
+    function updateClock() {
+      let now = new Date();
+      let time = now.toLocaleTimeString();
+      document.getElementById("clockTime").innerText = time;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Form Validation
+    function validateForm() {
+      let name = document.getElementById("name").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value.trim();
+      if (!name || !email || !password) {
+        document.getElementById("error").innerText = "All fields are required!";
+        return false;
+      }
+      alert("Form submitted successfully!");
+      return true;
+    }
+
+    // To-Do List
+    function addTask() {
+      let taskInput = document.getElementById("task");
+      let task = taskInput.value.trim();
+      if (task === "") return alert("Please enter a task!");
+      let li = document.createElement("li");
+      li.textContent = task;
+      document.getElementById("taskList").appendChild(li);
+      taskInput.value = "";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="about-page">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About • My Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="about-page">
+  <header class="site-header">
+    <nav class="nav container">
+      <a class="logo" href="index.html">AbyVen</a>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="section container grid two-col about-grid">
+    <div class="about-photo card shadow">
+      <img src="images/profile.png" alt="Profile photo" />
+    </div>
+
+    <div>
+      <h1>About Me</h1>
+      <p>
+        I’m a developer who enjoys building performant, accessible UIs.
+        I focus on clean architecture, maintainable CSS, and joyful user
+        experiences.
+      </p>
+
+      <h2>Skills</h2>
+
+      <div class="skill">
+        <span>HTML5</span>
+        <div class="progress"><span style="--val: 95%"></span></div>
+      </div>
+      <div class="skill">
+        <span>CSS3 / Flexbox / Grid</span>
+        <div class="progress"><span style="--val: 90%"></span></div>
+      </div>
+      <div class="skill">
+        <span>JavaScript</span>
+        <div class="progress"><span style="--val: 80%"></span></div>
+      </div>
+      <div class="skill">
+        <span>Responsive Design</span>
+        <div class="progress"><span style="--val: 92%"></span></div>
+      </div>
+
+      <a class="btn primary" href="projects.html">See Projects</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Abhilash Venugopal. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year')?.append(new Date().getFullYear());
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle?.addEventListener('click', () => links.classList.toggle('open'));
+  </script>
+</body>
+</html>

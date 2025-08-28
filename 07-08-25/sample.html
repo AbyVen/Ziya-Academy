@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sample Page</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .center-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #20849fff ;
+    }
+
+    .explore-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #588ca5ff ;
+      border: none;
+      color: #000000ff;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg" class="background" alt="Background Image">
+
+  <div class="center-content">
+    <h1>Welcome To The World Of Stars</h1>
+    <button class="explore-btn">Explore</button>
+  </div>
+
+</body>
+</html>
