@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackathon Weather App</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Particles.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <div class="app">
+    <h1>🌤️ Hackathon Weather App</h1>
+
+    <div class="search">
+      <input type="text" id="cityInput" placeholder="Enter city name">
+      <button id="searchBtn">Search</button>
+      <button id="geoBtn">📍 Use My Location</button>
+      <button id="themeToggle">🌙</button>
+    </div>
+
+    <div id="loader">Loading...</div>
+    <div id="weatherResult"></div>
+
+    <h2>5-Day Forecast</h2>
+    <div id="forecastCards" class="forecast"></div>
+
+    <div class="chart-container">
+      <canvas id="forecastChart"></canvas>
+    </div>
+
+    <div id="history"></div>
+    <div id="favorites"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
